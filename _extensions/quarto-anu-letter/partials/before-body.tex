@@ -1,0 +1,14 @@
+\AddToShipoutPicture{\ifthenelse{\value{page}<2}{\includegraphics[width=\paperwidth,height=\paperheight]{$title-bg-image$}}{\includegraphics[width=\paperwidth,height=\paperheight]{$bg-image$}}}
+
+
+$if(author)$
+\signature{
+$for(by-author)$
+$by-author.name.literal$$sep$\\[20mm]$endfor$
+}
+\address{${ by-author:_authors.tex() }}
+$endif$
+\begin{letter}{$for(address)$$address$$sep$\\$endfor$$if(subject)$\\ ~ \\$if(subject-title)$$subject-title$$else$Subject$endif$$if(subject-suffix)$$subject-suffix$$else$:$endif$ $subject$$endif$}
+$if(opening)$
+\opening{$opening$}
+$endif$

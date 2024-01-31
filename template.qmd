@@ -1,0 +1,40 @@
+---
+title: Letter from ANU
+format:
+  quarto-anu-letter-pdf: 
+    keep-tex: true
+author:
+  - name: Alison Doe
+    position: Director
+    affiliation:
+      - name: Australian National University
+        department: Biological Data Science Institute
+        address: "46 Sullivan's Creek Road"  
+        city: Canberra
+        country: Australia
+        postal-code: 2600
+address:
+  - Director Doe & Co
+  - 35 Anthony Road
+  - Newport
+  - Ipswich IP3 5RT
+subject: collaboration
+subject-title: "Subject"
+opening: "Dear Sir or Madam,"
+closing: "Yours Faithfully,"
+cc:
+  - Recipient 1
+  - Recipient 2
+encl:
+  - Enclosure 1
+  - Enclosure 2
+ps: |
+  PS: Lorem ipsum dolor sit amet, *consectetur* adipiscing elit.
+---
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin mollis dolor vitae tristique eleifend. Quisque non ipsum sit amet velit malesuada consectetur. Praesent vel facilisis leo. Sed facilisis varius orci, ut aliquam lorem malesuada in. Morbi nec purus at nisi fringilla varius non ut dui. 
+
+> This is how you can add quotes.
+
+
+This letter template is heavily inspired by the [quarto-letter](https://github.com/mcanouil/quarto-letter).
