@@ -7,9 +7,6 @@ contributes:
     common:
       date: today
       date-format: long
-    html:
-      toc: true
-      theme: [yeti, custom.scss]
     pdf: 
       documentclass: letter
       classoption: [12pt, letterpaper]

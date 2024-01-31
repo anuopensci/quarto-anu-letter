@@ -1,0 +1,42 @@
+---
+format: gfm
+---
+
+<!-- README.md is generated from README.qmd. Please edit that file -->
+
+# Quarto template for ANU Letter
+
+This repository contains the Quarto template for ANU ltter 
+
+## Installing
+
+```bash
+quarto use template anuopensci/quarto-anu-letter
+```
+
+
+```{r}
+#| include: false
+
+# Create pdf and png version of template
+library(quarto)
+library(magick)
+# Render template
+quarto_render(input = "template.qmd", output_format = "all")
+
+# Convert rendered PDF to PNG
+image_read_pdf("template.pdf") |>
+  image_montage(geometry = "x2000+25+35", 
+                tile = "1x1", 
+                bg = "grey92", 
+                shadow = TRUE) |>
+  image_convert(format = "png") |>
+  image_write("examples/template-pdf.png")
+# Move pdf to examples folder
+fs::file_move("template.pdf", "examples/template.pdf")
+```
+
+
+[![](examples/template-pdf.png)](examples/template.pdf)
+
+

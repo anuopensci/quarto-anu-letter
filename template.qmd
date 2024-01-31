@@ -1,8 +1,5 @@
 ---
-title: Letter from ANU
-format:
-  quarto-anu-letter-pdf: 
-    keep-tex: true
+format: quarto-anu-letter-pdf
 author:
   - name: Alison Doe
     position: Director
@@ -20,6 +17,7 @@ address:
   - Ipswich IP3 5RT
 subject: collaboration
 subject-title: "Subject"
+title: Letter from ANU
 opening: "Dear Sir or Madam,"
 closing: "Yours Faithfully,"
 cc:
