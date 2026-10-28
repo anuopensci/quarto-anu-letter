@@ -129,7 +129,7 @@ affiliation is listed in the address block at the top.
 |----|----|
 | `address` | Recipient’s name and address, one line per list item. |
 | `date` | Date of the letter. Defaults to `today`. |
-| `date-format` | Format of the date. Defaults to `long` (e.g. October 28, 2026). |
+| `date-format` | Format of the date. Defaults to `"DD MMMM YYYY"` (e.g. 28 October 2026). |
 | `subject` | *Optional.* Subject of the letter. Omit it to leave out the subject line entirely. |
 | `subject-title` | *Optional.* Label before the subject. Defaults to `Subject`. |
 | `subject-suffix` | *Optional.* Text between the label and the subject. Defaults to `:`. |

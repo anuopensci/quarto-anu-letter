@@ -6,7 +6,7 @@ contributes:
   formats:
     common:
       date: today
-      date-format: long
+      date-format: "DD MMMM YYYY"
     pdf: 
       documentclass: letter
       classoption: [11pt, a4paper]
