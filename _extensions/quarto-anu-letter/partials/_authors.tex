@@ -1,1 +1,1 @@
-$for(it.affiliations/first)$$it.name$\\$it.department$\\$it.address$\\$it.city$ $it.postal-code$\\$it.country$\\[2mm]$endfor$
+$for(it.affiliations/first)$\textbf{\color{black}$it.name$}$if(it.department)$\\$it.department$$endif$$if(it.address)$\\$it.address$$endif$\\$it.city$ $it.postal-code$$if(it.country)$\\$it.country$$endif$$endfor$

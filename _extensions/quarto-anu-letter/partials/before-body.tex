@@ -4,11 +4,14 @@
 $if(author)$
 \signature{
 $for(by-author)$
-$by-author.name.literal$$if(by-author.metadata.position)$\\ $by-author.metadata.position$$endif$$sep$\\[20mm]$endfor$
+\textbf{$by-author.name.literal$}$if(by-author.metadata.position)$\\{\small\color{anugrey}$by-author.metadata.position$}$endif$$sep$\\[20mm]$endfor$
 }
 \address{${ by-author:_authors.tex() }}
 $endif$
-\begin{letter}{$for(address)$$address$$sep$\\$endfor$$if(subject)$\\ ~ \\$if(subject-title)$$subject-title$$else$Subject$endif$$if(subject-suffix)$$subject-suffix$$else$:$endif$ $subject$$endif$}
+$if(subject)$
+\def\anusubject{\textcolor{anugold}{$if(subject-title)$$subject-title$$else$Subject$endif$$if(subject-suffix)$$subject-suffix$$else$:$endif$} $subject$}
+$endif$
+\begin{letter}{$for(address)$$address$$sep$\\$endfor$}
 $if(opening)$
 \opening{$opening$}
 $endif$

@@ -2,7 +2,7 @@
 format: quarto-anu-letter-pdf
 author:
   - name: Alison Doe
-    position: Director
+    position: Director # optional: shown below the name in the signature
     affiliation:
       - name: Australian National University
         department: Research School of Finance, Actuarial Studies and Statistics
@@ -15,6 +15,7 @@ address:
   - 35 Anthony Road
   - Newport
   - Ipswich IP3 5RT
+# subject is optional: remove these lines to omit the subject line
 subject: collaboration
 subject-title: "Subject"
 title: Letter from ANU
