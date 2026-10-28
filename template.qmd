@@ -1,5 +1,5 @@
 ---
-format: quarto-anu-letter-pdf
+format: quarto-anu-letter-pdf # or quarto-anu-letter-typst to render with Typst
 author:
   - name: Alison Doe
     position: Director # optional: shown below the name in the signature

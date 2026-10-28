@@ -8,27 +8,37 @@ This repository contains a [Quarto](https://quarto.org) template for
 writing letters on Australian National University (ANU) letterhead. You
 write the letter in Markdown, set the sender, recipient and other
 details in the YAML header, and Quarto renders it to a PDF with the ANU
-crest, gold side rule and a clean, modern layout.
+crest, gold side rule and a clean, modern layout. The letter can be
+rendered with either LaTeX or [Typst](https://typst.app), and both give
+the same layout.
 
 [![](examples/template-pdf.png)](examples/template.pdf)
+
+The image above is the LaTeX version. The [Typst
+version](examples/template-typst.pdf) looks the same.
 
 ## Features
 
 - ANU crest and gold rule on the first page, with a lighter background
   on following pages
 - Sender address block aligned to the right of the crest
-- Optional subject line, sender position, enclosures, cc list and
-  postscript
+- Optional subject line, sender position, signature image, enclosures,
+  cc list and postscript
 - Support for multiple signatories
 - A4 paper, Roboto sans-serif font and ANU gold accents
 - Page numbers (“Page 2 of 3”) from the second page onwards
+- Two formats with the same layout: `quarto-anu-letter-pdf` (LaTeX) and
+  `quarto-anu-letter-typst` (Typst)
 
 ## Requirements
 
-- [Quarto](https://quarto.org/docs/get-started/) 1.4 or later
+- [Quarto](https://quarto.org/docs/get-started/) 1.4 or later. The Typst
+  format needs a version of Quarto that comes with Typst 0.12 or later
+  (it has been tested with Quarto 1.9, which includes Typst 0.13). You
+  can check with `quarto typst --version`.
 
-- A LaTeX distribution. If you don’t have one, the easiest option is
-  TinyTeX:
+- For the LaTeX format only, a LaTeX distribution. If you don’t have
+  one, the easiest option is TinyTeX:
 
   ``` bash
   quarto install tinytex
@@ -36,6 +46,9 @@ crest, gold side rule and a clean, modern layout.
 
   TinyTeX installs any missing LaTeX packages (such as the Roboto font)
   automatically the first time you render.
+
+The Typst format needs nothing else: Typst comes with Quarto, and the
+Roboto font is included in the extension.
 
 ## Installing
 
@@ -55,8 +68,8 @@ To add the format to an existing project instead, run:
 quarto add anuopensci/quarto-anu-letter
 ```
 
-and set `format: quarto-anu-letter-pdf` in the YAML header of your
-document.
+and set `format: quarto-anu-letter-pdf` (or `quarto-anu-letter-typst`)
+in the YAML header of your document.
 
 ## Usage
 
@@ -95,7 +108,28 @@ closing: "Yours faithfully,"
 The body of the letter goes here.
 ```
 
+### LaTeX or Typst
+
+The template renders with LaTeX by default. To use Typst instead, change
+the format in the YAML header:
+
+``` yaml
+format: quarto-anu-letter-typst
+```
+
+or keep the header as it is and choose the format when you render:
+
+``` bash
+quarto render template.qmd --to quarto-anu-letter-typst
+```
+
+Both formats take the same options and produce the same layout. Typst
+renders faster and doesn’t need a LaTeX installation, while the LaTeX
+format lets you add your own LaTeX packages and commands.
+
 ## Options
+
+The options below work the same way in both formats.
 
 ### Sender
 
@@ -150,22 +184,30 @@ subject-suffix: ":"
 
 ## Customising
 
-The letter is built on the LaTeX `letter` class, and all the styling
-lives in `_extensions/quarto-anu-letter/`:
+All the styling lives in `_extensions/quarto-anu-letter/`:
 
-- `_extension.yml` sets the paper size, margins, font, colours and the
-  layout of the top of the letter (the `\opening` command).
-- `partials/before-body.tex` sets up the signature, sender address and
-  subject.
-- `partials/after-body.tex` adds the closing, enclosures, cc list and
-  postscript.
-- `partials/_authors.tex` formats the sender’s address block.
+- `_extension.yml` defines both formats. For LaTeX it sets the paper
+  size, margins, font, colours and the layout of the top of the letter
+  (the `\opening` command). For Typst it sets the paper size, margins
+  and font.
+- The LaTeX format is built on the LaTeX `letter` class:
+  - `partials/before-body.tex` sets up the signature, sender address and
+    subject.
+  - `partials/after-body.tex` adds the closing, enclosures, cc list and
+    postscript.
+  - `partials/_authors.tex` formats the sender’s address block.
+- The Typst format is defined in two files:
+  - `partials/typst-template.typ` lays out the letter and sets the
+    colours.
+  - `partials/typst-show.typ` passes the options from the YAML header to
+    the template.
+- `fonts/` holds the Roboto font files used by the Typst format.
 - `assets/images/` holds the background images for the first page
   (`coverpage.jpg`) and the following pages (`page-background.jpg`).
 
 You can also override most format options from your document’s YAML
-header without editing the extension. For example, to change the
-margins:
+header without editing the extension. For example, to change the margins
+in the LaTeX format:
 
 ``` yaml
 format:
@@ -174,8 +216,26 @@ format:
       - "margin=2.5cm"
 ```
 
+and in the Typst format:
+
+``` yaml
+format:
+  quarto-anu-letter-typst:
+    margin:
+      x: 2.5cm
+      y: 2.5cm
+```
+
+The Typst format also accepts Quarto’s `papersize`, `mainfont` and
+`fontsize` options.
+
 ## Acknowledgements
 
 This template is heavily inspired by
 [quarto-letter](https://github.com/mcanouil/quarto-letter) by Mickaël
 Canouil.
+
+The Typst format includes the
+[Roboto](https://fonts.google.com/specimen/Roboto) font by Google, which
+is licensed under the Apache License 2.0 (see
+`_extensions/quarto-anu-letter/fonts/LICENSE`).

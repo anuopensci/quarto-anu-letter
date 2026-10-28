@@ -65,4 +65,17 @@ contributes:
       template-partials:
         - "partials/before-body.tex"
         - "partials/after-body.tex"
-        - "partials/_authors.tex"   
+        - "partials/_authors.tex"
+    typst:
+      papersize: a4
+      margin:
+        x: 1in
+        y: 1in
+      mainfont: Roboto
+      fontsize: 11pt
+      font-paths: fonts
+      title-bg-image: assets/images/coverpage.jpg
+      bg-image: assets/images/page-background.jpg
+      template-partials:
+        - "partials/typst-template.typ"
+        - "partials/typst-show.typ"
