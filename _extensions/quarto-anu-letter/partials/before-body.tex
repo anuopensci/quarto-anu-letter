@@ -4,7 +4,7 @@
 $if(author)$
 \signature{
 $for(by-author)$
-$by-author.name.literal$$sep$\\[20mm]$endfor$
+$by-author.name.literal$$if(by-author.metadata.position)$\\ $by-author.metadata.position$$endif$$sep$\\[20mm]$endfor$
 }
 \address{${ by-author:_authors.tex() }}
 $endif$
