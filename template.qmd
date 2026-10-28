@@ -5,11 +5,11 @@ author:
     position: Director
     affiliation:
       - name: Australian National University
-        department: Biological Data Science Institute
-        address: "46 Sullivan's Creek Road"  
-        city: Canberra
+        department: Research School of Finance, Actuarial Studies and Statistics
+        address: "26C Kingsley Street"
+        city: Canberra ACT
         country: Australia
-        postal-code: 2600
+        postal-code: 2601
 address:
   - Director Doe & Co
   - 35 Anthony Road
