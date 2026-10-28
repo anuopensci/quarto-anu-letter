@@ -3,6 +3,7 @@ format: quarto-anu-letter-pdf
 author:
   - name: Alison Doe
     position: Director # optional: shown below the name in the signature
+    signature: signature.png # optional: image of the signature
     affiliation:
       - name: Australian National University
         department: Research School of Finance, Actuarial Studies and Statistics

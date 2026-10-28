@@ -4,9 +4,9 @@
 $if(author)$
 \signature{
 $for(by-author)$
-\textbf{$by-author.name.literal$}$if(by-author.metadata.position)$\\{\small\color{anugrey}$by-author.metadata.position$}$endif$$sep$\\[20mm]$endfor$
+$if(by-author.metadata.signature)$\makebox[0pt][l]{\smash{\raisebox{0.85\baselineskip}{\includegraphics[height=1.3cm]{$by-author.metadata.signature$}}}}$endif$\textbf{$by-author.name.literal$}$if(by-author.metadata.position)$\\{\small\color{anugrey}$by-author.metadata.position$}$endif$$sep$\\[20mm]$endfor$
 }
-\address{${ by-author:_authors.tex() }}
+\address{${ by-author:_authors.tex()[\\\medskip] }}
 $endif$
 $if(subject)$
 \def\anusubject{\textcolor{anugold}{$if(subject-title)$$subject-title$$else$Subject$endif$$if(subject-suffix)$$subject-suffix$$else$:$endif$} $subject$}

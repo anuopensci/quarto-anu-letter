@@ -4,12 +4,178 @@
 
 # Quarto template for ANU Letter
 
-This repository contains the Quarto template for ANU ltter
+This repository contains a [Quarto](https://quarto.org) template for
+writing letters on Australian National University (ANU) letterhead. You
+write the letter in Markdown, set the sender, recipient and other
+details in the YAML header, and Quarto renders it to a PDF with the ANU
+crest, gold side rule and a clean, modern layout.
+
+[![](examples/template-pdf.png)](examples/template.pdf)
+
+## Features
+
+- ANU crest and gold rule on the first page, with a lighter background
+  on following pages
+- Sender address block aligned to the right of the crest
+- Optional subject line, sender position, enclosures, cc list and
+  postscript
+- Support for multiple signatories
+- A4 paper, Roboto sans-serif font and ANU gold accents
+- Page numbers (“Page 2 of 3”) from the second page onwards
+
+## Requirements
+
+- [Quarto](https://quarto.org/docs/get-started/) 1.4 or later
+
+- A LaTeX distribution. If you don’t have one, the easiest option is
+  TinyTeX:
+
+  ``` bash
+  quarto install tinytex
+  ```
+
+  TinyTeX installs any missing LaTeX packages (such as the Roboto font)
+  automatically the first time you render.
 
 ## Installing
+
+To start a new letter from the template, run:
 
 ``` bash
 quarto use template anuopensci/quarto-anu-letter
 ```
 
-[![](examples/template-pdf.png)](examples/template.pdf)
+This creates a new directory containing `template.qmd` and the
+`_extensions/` folder. Rename `template.qmd` to whatever you like and
+edit it.
+
+To add the format to an existing project instead, run:
+
+``` bash
+quarto add anuopensci/quarto-anu-letter
+```
+
+and set `format: quarto-anu-letter-pdf` in the YAML header of your
+document.
+
+## Usage
+
+Write the body of the letter in Markdown below the YAML header, then
+render it:
+
+``` bash
+quarto render template.qmd
+```
+
+A minimal letter looks like this:
+
+``` yaml
+---
+format: quarto-anu-letter-pdf
+author:
+  - name: Alison Doe
+    position: Director
+    affiliation:
+      - name: Australian National University
+        department: Research School of Finance, Actuarial Studies and Statistics
+        address: "26C Kingsley Street"
+        city: Canberra ACT
+        country: Australia
+        postal-code: 2601
+address:
+  - Director Doe & Co
+  - 35 Anthony Road
+  - Newport
+  - Ipswich IP3 5RT
+subject: collaboration
+opening: "Dear Sir or Madam,"
+closing: "Yours faithfully,"
+---
+
+The body of the letter goes here.
+```
+
+## Options
+
+### Sender
+
+The sender is set with `author`. The name and position appear in the
+signature, and the first affiliation appears in the address block at the
+top of the letter.
+
+| Field | Description |
+|----|----|
+| `name` | Sender’s name, shown in bold in the signature. |
+| `position` | *Optional.* Job title, shown in grey below the name. |
+| `signature` | *Optional.* Path to an image of the signature (e.g. a PNG with a transparent background), shown above the name. |
+| `affiliation`: `name` | Organisation name, shown in bold at the top of the letter. |
+| `affiliation`: `department` | *Optional.* School, college or department. |
+| `affiliation`: `address` | *Optional.* Street address. |
+| `affiliation`: `city` | City and state, e.g. `Canberra ACT`. |
+| `affiliation`: `postal-code` | Postcode, printed after the city. |
+| `affiliation`: `country` | *Optional.* Country. |
+
+The `signature.png` included with the template is a made-up example.
+Replace it with a scan of your own signature, cropped closely and
+ideally with a transparent background. It is scaled to 1.3cm high.
+
+To have more than one person sign the letter, list several authors. Each
+author gets their own signature block, and each author’s first
+affiliation is listed in the address block at the top.
+
+### Letter
+
+| Field | Description |
+|----|----|
+| `address` | Recipient’s name and address, one line per list item. |
+| `date` | Date of the letter. Defaults to `today`. |
+| `date-format` | Format of the date. Defaults to `long` (e.g. October 28, 2026). |
+| `subject` | *Optional.* Subject of the letter. Omit it to leave out the subject line entirely. |
+| `subject-title` | *Optional.* Label before the subject. Defaults to `Subject`. |
+| `subject-suffix` | *Optional.* Text between the label and the subject. Defaults to `:`. |
+| `opening` | Salutation, e.g. `"Dear Dr Smith,"`. |
+| `closing` | Sign-off, e.g. `"Yours sincerely,"`. |
+| `encl` | *Optional.* List of enclosures. |
+| `cc` | *Optional.* List of people receiving a copy. |
+| `ps` | *Optional.* Postscript, shown at the end of the letter. |
+| `title` | Title stored in the PDF metadata. It is not printed on the letter. |
+
+For example, to use “Re” instead of “Subject:”:
+
+``` yaml
+subject: Your application
+subject-title: Re
+subject-suffix: ":"
+```
+
+## Customising
+
+The letter is built on the LaTeX `letter` class, and all the styling
+lives in `_extensions/quarto-anu-letter/`:
+
+- `_extension.yml` sets the paper size, margins, font, colours and the
+  layout of the top of the letter (the `\opening` command).
+- `partials/before-body.tex` sets up the signature, sender address and
+  subject.
+- `partials/after-body.tex` adds the closing, enclosures, cc list and
+  postscript.
+- `partials/_authors.tex` formats the sender’s address block.
+- `assets/images/` holds the background images for the first page
+  (`coverpage.jpg`) and the following pages (`page-background.jpg`).
+
+You can also override most format options from your document’s YAML
+header without editing the extension. For example, to change the
+margins:
+
+``` yaml
+format:
+  quarto-anu-letter-pdf:
+    geometry:
+      - "margin=2.5cm"
+```
+
+## Acknowledgements
+
+This template is heavily inspired by
+[quarto-letter](https://github.com/mcanouil/quarto-letter) by Mickaël
+Canouil.
